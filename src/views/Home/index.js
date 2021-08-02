@@ -1,30 +1,30 @@
-import React, { useState, useEffect } from 'react';
-import GordonLoader from 'components/Loader';
-// @WELLNESS-CHECK disabled to revert this you must uncomment this lines of code
-//import WellnessQuestion from 'components/WellnessQuestion';
-import GuestWelcome from './components/GuestWelcome';
-import Carousel from './components/Carousel';
-import CLWCreditsDaysLeft from './components/CLWCreditsDaysLeft';
-import DaysLeft from './components/DaysLeft';
-import DiningBalance from './components/DiningBalance';
-import NewsCard from './components/NewsCard';
-import user from 'services/user';
-// @ACADEMIC-CHECKIN disabled line below until getting the correct dates can be done
-// import { Redirect } from 'react-router-dom';
 // @WELLNESS-CHECK disabled to revert this import these commented out lines
 // import wellness from 'services/wellness';
 // import storage from 'services/storage';
 // @TODO CSSMODULES - moved to global styles until a better solution is found
 // import styles from './Home.module.css';
 import { Grid } from '@material-ui/core';
+import GordonLoader from 'components/Loader';
+import React, { useEffect, useState } from 'react';
 // @ACADEMIC-CHECKIN disabled line below until getting the correct dates can be done
-// import checkInService from 'services/checkIn';
+import { Redirect } from 'react-router-dom';
+// @ACADEMIC-CHECKIN disabled line below until getting the correct dates can be done
+import checkInService from 'services/checkIn';
+import user from 'services/user';
+import Carousel from './components/Carousel';
+import CLWCreditsDaysLeft from './components/CLWCreditsDaysLeft';
+import DaysLeft from './components/DaysLeft';
+import DiningBalance from './components/DiningBalance';
+// @WELLNESS-CHECK disabled to revert this you must uncomment this lines of code
+//import WellnessQuestion from 'components/WellnessQuestion';
+import GuestWelcome from './components/GuestWelcome';
+import NewsCard from './components/NewsCard';
 const Home = ({ authentication, onLogIn }) => {
   const [loading, setLoading] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(authentication);
   const [personType, setPersonType] = useState(null);
   // @ACADEMIC-CHECKIN disabled line below until getting the correct dates can be done
-  // const [checkedIn, setCheckedIn] = useState(null);
+  const [checkedIn, setCheckedIn] = useState(null);
 
   /*
     // @WELLNESS-CHECK disabled to revert this from the home page, you must uncomment all the code below.
@@ -33,34 +33,8 @@ const Home = ({ authentication, onLogIn }) => {
     To undo the changes made you may just uncomment all the code that has been commented out
   */
 
-  // const [networkStatus, setNetworkStatus] = useState('online');
+  // const isOnline = useNetworkStatus()
   // const [hasAnswered, setHasAnswered] = useState(null);
-  ////
-  // useEffect(() => {
-  //   // Retrieve network status from local storage or default to online
-  //   try {
-  //     setNetworkStatus(storage.get('network-status'));
-  //   } catch (error) {
-  //     setNetworkStatus('online');
-  //   }
-
-  //   /* Used to re-render the page when the network connection changes.
-  //    * The origin of the message is checked to prevent cross-site scripting attacks
-  //    */
-  //   window.addEventListener('message', (event) => {
-  //     setNetworkStatus((prevStatus) => {
-  //       if (
-  //         event.origin === window.location.origin &&
-  //         (event.data === 'online' || event.data === 'offline')
-  //       ) {
-  //         return event.data;
-  //       }
-  //       return prevStatus;
-  //     });
-  //   });
-  //
-  //   return () => window.removeEventListener('message', () => {});
-  // }, []);
   // END Wellness Check disabled code
 
   useEffect(() => {
@@ -86,7 +60,7 @@ const Home = ({ authentication, onLogIn }) => {
       /*wellness.getStatus(),*/
     ]);
     // @ACADEMIC-CHECKIN disabled line below until getting the correct dates can be done
-    // setCheckedIn(await checkInService.getStatus());
+    setCheckedIn(await checkInService.getStatus());
     setPersonType(PersonType);
     // setHasAnswered(IsValid);
     setLoading(false);
@@ -97,12 +71,12 @@ const Home = ({ authentication, onLogIn }) => {
   } else if (!isAuthenticated) {
     return <GuestWelcome onLogIn={onLogIn} />;
   } // @WELLNESS-CHECK disabled to revert this you must uncomment this lines of code
-  //else if (networkStatus === 'online' && !hasAnswered) {
+  // else if (isOnline && !hasAnswered) {
   //return <WellnessQuestion setStatus={() => setHasAnswered(true)} />;}
   // @ACADEMIC-CHECKIN disabled line below until getting the correct dates can be done
-  // else if (!checkedIn && personType.includes('stu')) {
-  //   return (<Redirect to='/AcademicCheckIn' />);
-  else {
+  else if (!checkedIn && personType.includes('stu')) {
+    return <Redirect to="/AcademicCheckIn" />;
+  } else {
     let doughnut = personType.includes('stu') ? <CLWCreditsDaysLeft /> : <DaysLeft />;
 
     return (
