@@ -1,8 +1,7 @@
+import { Button, Grid, Typography } from '@material-ui/core';
 import React from 'react';
-import { Grid, Typography, Button } from '@material-ui/core';
-import { gordonColors } from 'theme';
 import { Link } from 'react-router-dom';
-
+import { gordonColors } from 'theme';
 // @TODO CSSMODULES - outside directory
 import styles from '../../AcademicCheckIn.module.css';
 
@@ -18,7 +17,7 @@ const CompletedCheckIn = ({ basicInfo }) => {
     >
       <Grid item xs={8}>
         <Typography variant="h5" gutterBottom align="center" style={{ color: cyan }}>
-          Congratulations {basicInfo.studentFirstName} on completing Academic Checkin!
+          Congratulations {basicInfo.studentFirstName} on completing Enrollment Checkin!
         </Typography>
         <br />
         <Typography variant="body1" align="center" gutterBottom>

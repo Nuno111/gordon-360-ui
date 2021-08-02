@@ -6,9 +6,9 @@
 import { Grid } from '@material-ui/core';
 import GordonLoader from 'components/Loader';
 import React, { useEffect, useState } from 'react';
-// @ACADEMIC-CHECKIN disabled line below until getting the correct dates can be done
+// @ENROLLMENT-CHECKIN disabled line below until getting the correct dates can be done
 import { Redirect } from 'react-router-dom';
-// @ACADEMIC-CHECKIN disabled line below until getting the correct dates can be done
+// @ENROLLMENT-CHECKIN disabled line below until getting the correct dates can be done
 import checkInService from 'services/checkIn';
 import user from 'services/user';
 import Carousel from './components/Carousel';
@@ -23,7 +23,7 @@ const Home = ({ authentication, onLogIn }) => {
   const [loading, setLoading] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(authentication);
   const [personType, setPersonType] = useState(null);
-  // @ACADEMIC-CHECKIN disabled line below until getting the correct dates can be done
+  // @ENROLLMENT-CHECKIN disabled line below until getting the correct dates can be done
   const [checkedIn, setCheckedIn] = useState(null);
 
   /*
@@ -59,7 +59,7 @@ const Home = ({ authentication, onLogIn }) => {
       // @WELLNESS-CHECK disabled to revert this you must uncomment this lines of code
       /*wellness.getStatus(),*/
     ]);
-    // @ACADEMIC-CHECKIN disabled line below until getting the correct dates can be done
+    // @ENROLLMENT-CHECKIN disabled line below until getting the correct dates can be done
     setCheckedIn(await checkInService.getStatus());
     setPersonType(PersonType);
     // setHasAnswered(IsValid);
@@ -73,9 +73,9 @@ const Home = ({ authentication, onLogIn }) => {
   } // @WELLNESS-CHECK disabled to revert this you must uncomment this lines of code
   // else if (isOnline && !hasAnswered) {
   //return <WellnessQuestion setStatus={() => setHasAnswered(true)} />;}
-  // @ACADEMIC-CHECKIN disabled line below until getting the correct dates can be done
+  // @ENROLLMENT-CHECKIN disabled line below until getting the correct dates can be done
   else if (!checkedIn && personType.includes('stu')) {
-    return <Redirect to="/AcademicCheckIn" />;
+    return <Redirect to="/EnrollmentCheckIn" />;
   } else {
     let doughnut = personType.includes('stu') ? <CLWCreditsDaysLeft /> : <DaysLeft />;
 

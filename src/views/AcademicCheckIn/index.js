@@ -4,7 +4,7 @@ import GordonLoader from 'components/Loader';
 import React, { useEffect, useState } from 'react';
 import checkInService from 'services/checkIn';
 import user from 'services/user';
-import AcademicCheckInWelcome from 'views/AcademicCheckIn/components/AcademicCheckInWelcome';
+import EnrollmentCheckInWelcome from 'views/AcademicCheckIn/components/AcademicCheckInWelcome';
 import EmergencyContactUpdate from 'views/AcademicCheckIn/components/EmergencyContactUpdate';
 import UpdatePhone from 'views/AcademicCheckIn/components/UpdatePhone';
 import styles from './AcademicCheckIn.module.css';
@@ -23,7 +23,7 @@ const steps = [
   'Completed Check In',
 ];
 
-const AcademicCheckIn = (props) => {
+const EnrollmentCheckIn = (props) => {
   const [activeStep, setActiveStep] = useState(0);
 
   const [loading, setLoading] = useState(true);
@@ -167,16 +167,16 @@ const AcademicCheckIn = (props) => {
   }, [props.authentication, loading]);
 
   useEffect(() => {
-    props.history.replace('/AcademicCheckIn', { step: activeStep });
+    props.history.replace('/EnrollmentCheckIn', { step: activeStep });
   }, [activeStep, props.history]);
 
   const handleNext = () => {
-    props.history.push('/AcademicCheckIn', { step: activeStep });
+    props.history.push('/EnrollmentCheckIn', { step: activeStep });
     setActiveStep((nextStep) => nextStep + 1);
   };
 
   const handlePrev = () => {
-    props.history.push('/AcademicCheckIn', { step: activeStep });
+    props.history.push('/EnrollmentCheckIn', { step: activeStep });
     setActiveStep((previousStep) => previousStep - 1);
   };
 
@@ -270,13 +270,17 @@ const AcademicCheckIn = (props) => {
   if (loading === true) {
     return <GordonLoader />;
   } else if (!props.authentication) {
-    return <GordonUnauthorized feature={'Academic Checkin'} />;
+    return <GordonUnauthorized feature={'Enrollment Checkin'} />;
   } else {
     return (
       <Grid container justifyContent="center" spacing={2}>
         <Grid item xs={12} md={9} lg={6}>
-          <Card className={styles.academicCheckIn}>
-            <CardHeader title="Academic Check In" className={styles.checkIn_header} padding={30} />
+          <Card className={styles.enrollmentCheckIn}>
+            <CardHeader
+              title="Enrollment Check In"
+              className={styles.checkIn_header}
+              padding={30}
+            />
             <Box m={2}>
               <Grid
                 container
@@ -289,7 +293,7 @@ const AcademicCheckIn = (props) => {
                   <Grid container justifyContent="center" alignItems="center">
                     <Grid item>
                       {activeStep === 0 && (
-                        <AcademicCheckInWelcome
+                        <EnrollmentCheckInWelcome
                           basicInfo={basicInfo}
                           hasMajorHold={hasMajorHold}
                           holds={holds}
@@ -426,4 +430,4 @@ const AcademicCheckIn = (props) => {
   }
 };
 
-export default AcademicCheckIn;
+export default EnrollmentCheckIn;
