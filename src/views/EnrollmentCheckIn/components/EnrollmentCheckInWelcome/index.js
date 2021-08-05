@@ -2,7 +2,7 @@ import { Grid, Typography } from '@material-ui/core';
 import React from 'react';
 import { gordonColors } from 'theme';
 // @TODO CSSMODULES - outside directory
-import styles from '../../AcademicCheckIn.module.css';
+import styles from '../../EnrollmentCheckIn.module.css';
 
 const EnrollmentCheckInWelcome = ({ basicInfo, hasMajorHold, holds }) => {
   const blue = gordonColors.primary.blue;

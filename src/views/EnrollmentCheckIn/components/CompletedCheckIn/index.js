@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { gordonColors } from 'theme';
 // @TODO CSSMODULES - outside directory
-import styles from '../../AcademicCheckIn.module.css';
+import styles from '../../EnrollmentCheckIn.module.css';
 
 const CompletedCheckIn = ({ basicInfo }) => {
   const cyan = gordonColors.primary.cyan;

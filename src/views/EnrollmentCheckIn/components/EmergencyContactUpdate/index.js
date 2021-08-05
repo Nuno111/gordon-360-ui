@@ -1,19 +1,18 @@
 // import React, { useState, useEffect } from 'react';
 import {
+  Box,
+  Checkbox,
   FormControl,
   FormControlLabel,
-  InputLabel,
-  Checkbox,
-  Input,
   Grid,
+  Input,
+  InputLabel,
   Typography,
-  Box,
 } from '@material-ui/core';
 import { gordonColors } from 'theme';
-import { phoneMaskUS, phoneMaskINTL } from 'views/AcademicCheckIn/components/UpdatePhone/';
-
 // @TODO CSSMODULES - outside directory
-import styles from '../../AcademicCheckIn.module.css';
+import styles from '../../EnrollmentCheckIn.module.css';
+import { phoneMaskINTL, phoneMaskUS } from './UpdatePhone/';
 
 const EmergencyContactUpdate = ({
   emergencyContact1,

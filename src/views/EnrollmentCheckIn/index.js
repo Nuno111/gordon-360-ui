@@ -4,14 +4,14 @@ import GordonLoader from 'components/Loader';
 import React, { useEffect, useState } from 'react';
 import checkInService from 'services/checkIn';
 import user from 'services/user';
-import EnrollmentCheckInWelcome from 'views/AcademicCheckIn/components/AcademicCheckInWelcome';
-import EmergencyContactUpdate from 'views/AcademicCheckIn/components/EmergencyContactUpdate';
-import UpdatePhone from 'views/AcademicCheckIn/components/UpdatePhone';
-import styles from './AcademicCheckIn.module.css';
+import EmergencyContactUpdate from 'views/EnrollmentCheckIn/components/EmergencyContactUpdate';
+import EnrollmentCheckInWelcome from 'views/EnrollmentCheckIn/components/EnrollmentCheckInWelcome';
+import UpdatePhone from 'views/EnrollmentCheckIn/components/UpdatePhone';
 import CompletedCheckIn from './components/CompletedCheckIn';
 import ConfirmCheckIn from './components/ConfirmCheckIn';
 import PrivacyAgreement from './components/PrivacyAgreement';
 import RaceEthnicity from './components/RaceEthnicity';
+import styles from './EnrollmentCheckIn.module.css';
 
 const steps = [
   'Main Form',
