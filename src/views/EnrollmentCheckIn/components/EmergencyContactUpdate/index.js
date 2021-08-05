@@ -12,7 +12,7 @@ import {
 import { gordonColors } from 'theme';
 // @TODO CSSMODULES - outside directory
 import styles from '../../EnrollmentCheckIn.module.css';
-import { phoneMaskINTL, phoneMaskUS } from './UpdatePhone/';
+import { phoneMaskINTL, phoneMaskUS } from '../UpdatePhone/';
 
 const EmergencyContactUpdate = ({
   emergencyContact1,
